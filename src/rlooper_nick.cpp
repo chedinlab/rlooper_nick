@@ -4,7 +4,7 @@
 #include "simulation.h"
 #include <string.h>
 #include <unistd.h>
-#include "rlooper.h"
+#include "rlooper_nick.h"
 #include "math.h"
 #include <stdexcept>
 #include <cstring>
@@ -49,8 +49,8 @@ int main(int argc, char* argv[]) {
 	//	cout << YW << "\n>Runnning simulation A (dynamic): \n";
 	//	sim.simulation_A();
 	//}
-	cout << LPR << "\nrlooper.cpp::" << "main" << NN << "\n";
-	cout << LPR << "\nrlooper.cpp::" << "parse_argument" << NN << "\n";
+	cout << LPR << "\nrlooper_nick.cpp::" << "main" << NN << "\n";
+	cout << LPR << "\nrlooper_nick.cpp::" << "parse_argument" << NN << "\n";
 	cout << YW << "\n>Running simulation: \n";
 	sim.simulation_A();
 
@@ -105,14 +105,14 @@ std::string getDefaultOutfile(int argc, char* argv[], std::map<std::string, std:
 		if (i == argc - 1 || (i < argc - 1 && string(argv[i+1]).substr(0, 2) == "--")) {
 			currargs[argkey] = "True";
 			runScript += " --" + argkey;
-			debugprint << LPR << "rlooper::getDefaultOutfile:" << LBU << argkey << "=" << LGN << "True" << NN << endl;
+			debugprint << LPR << "rlooper_nick::getDefaultOutfile:" << LBU << argkey << "=" << LGN << "True" << NN << endl;
 			//ssoutfile << "_" << argkey;
 		}
 		else {
 			string argval = argv[i+1];
 			chomp(argval);
 			currargs[argkey] = argval;
-			debugprint << LPR << "rlooper::getDefaultOutfile:" << LCY << argkey << "=" << LGN << argval << NN << endl;
+			debugprint << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << argkey << "=" << LGN << argval << NN << endl;
 			if (argkey == "sigma") {
 				argval = turnSigmaIntoNiceStringForOutput(atof(argv[i + 1]),debugprint);
 			}
@@ -154,12 +154,12 @@ std::string getDefaultOutfile(int argc, char* argv[], std::map<std::string, std:
 			}
 			if (argkey != "fasta" && argkey != "outname" && argkey != "outdir" && argkey != "verbose" && argkey != "debug") {
 				if (currval == "True") {
-					// cout << LPR << "rlooper::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currval << NN << endl;
+					// cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currval << NN << endl;
 					// cout << argkey << "=" << "true" << endl;
 					ssoutfile << "_" << argkey;
 				}
 				else {
-					// cout << LPR << "rlooper::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currval << NN << endl;
+					// cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currval << NN << endl;
 					// cout << argkey << "=" << currval << endl;
 					ssoutfile << "_" << argkey << "," << currval;
 				}
@@ -170,7 +170,7 @@ std::string getDefaultOutfile(int argc, char* argv[], std::map<std::string, std:
 			else {
 				argUsed += " --" + argkey + " " + currargs[argkey];
 			}
-			cout << LPR << "rlooper::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currargs[argkey] << NN << " (default=" << LPR << myargs[argkey] << NN << ")" << endl;
+			cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << argkey << "=" << LGN << currargs[argkey] << NN << " (default=" << LPR << myargs[argkey] << NN << ")" << endl;
 
 			myargs[argkey] = currargs[argkey];
 		}
@@ -202,19 +202,19 @@ std::string getDefaultOutfile(int argc, char* argv[], std::map<std::string, std:
 
 	if (!atob(myargs["outdir"])) {
 		myargs["outdir"] = getFolder(myargs["fasta"]);
-		cout << LPR << "rlooper::getDefaultOutfile:" << LCY << "outdir" << "=" << LGN << myargs["outdir"] <<  NN << endl;
+		cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << "outdir" << "=" << LGN << myargs["outdir"] <<  NN << endl;
 	}
 
 	if (!atob(myargs["outname"])) {
 		myargs["outname"] = getFilename(myargs["fasta"]);
-		cout << LPR << "rlooper::getDefaultOutfile:" << LCY << "outname" << "=" << LGN << myargs["outname"] <<  NN << endl;
+		cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << "outname" << "=" << LGN << myargs["outname"] <<  NN << endl;
 	}
 
 	
 	myargs["outfile"] = myargs["outdir"] + "/" + myargs["outname"] + ssoutfile.str();
-	cout << LPR << "rlooper::getDefaultOutfile:" << LCY << "outfile" << "=" << LGN << myargs["outfile"] <<  NN << endl;
+	cout << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << "outfile" << "=" << LGN << myargs["outfile"] <<  NN << endl;
 	
-	debugprint << LPR << "rlooper::getDefaultOutfile:" << LCY << "outfile_addition" << "=" << LGN << ssoutfile.str() << NN << endl;
+	debugprint << LPR << "rlooper_nick::getDefaultOutfile:" << LCY << "outfile_addition" << "=" << LGN << ssoutfile.str() << NN << endl;
 	debugprint << YW << "Main Arguments:" << LCY << argUsed << NN << "\n" <<
 	              YW << "Default Arguments:" << LGN << argDefaultUsed << NN << "\n" << 
 	              YW << "Unused Arguments:" << LPR << argDefaultNotUsed << NN << "\n\n";
@@ -313,7 +313,7 @@ int parse_argument(int argc, char* argv[], Simulation& sim, Rloop_model& model, 
 	sim.set_import_flag(myargs["import"].c_str());
 	sim.set_circular(atob(myargs["circular"].c_str()));
 	
-	// original rlooper 
+	// original rlooper_nick 
 	sim.set_average_g(atob(myargs["localaverageenergy"].c_str()));
 	
 	
@@ -397,7 +397,7 @@ void printUsage(std::string& myscript) {
 	// cout << "--sigma         [float]    : superhelical density of the region [-0.07]" << endl;
 	// cout << "--txsigma       [float]    : superhelical density behind the RNA polymerase [-0.07] (Kouzine et al: -7%)" << endl;
 	// cout << "--minlength     [int]      : minimum rloop peak length in bp [50]" << endl;
-	// cout << "--w/--window    [int]      : window_size for dynamic rlooper [15]" << endl;
+	// cout << "--w/--window    [int]      : window_size for dynamic rlooper_nick [15]" << endl;
 	// cout << "--unconstrained [F]        : toggle to remove the superhelicity term from the energy calculation [FALSE]" << endl;
 	
 	// cout << NN;
@@ -483,7 +483,7 @@ std::string turnSigmaIntoNiceStringForOutput(double sigma, stringstream& debugpr
 		oss << "pos" << std::abs(integerPart) << "p" << std::abs(fractionalPart);
 	}
 	
-	debugprint << "rlooper.cpp::turnSigmaIntoNiceStringForOutput:" << NN << "\n" << LGN << 
+	debugprint << "rlooper_nick.cpp::turnSigmaIntoNiceStringForOutput:" << NN << "\n" << LGN << 
 	"- sigma = " << sigma << "\n" <<
 	"- double number = sigma * 100 = " << sigma << "*" << 100 << " = " << number << "\n" <<
 	"- int integerPart = int(number) = int(" << number << ") = " << integerPart << "\n" <<

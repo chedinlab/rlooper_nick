@@ -40,17 +40,16 @@ bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir_a20
 ## Usage
 
 ```
-Usage: bin/rlooper_sim --i <fastaFile.fa> --outdir <outdir> --o <outprefix>
+Usage: rlooper_sim --i <fastaFile.fa> --outdir <outdir> --o <outprefix>
 
 ----------------
 Options
 
 --i/--fasta     [file.fa]  : fasta input.fa. IMPORTANT: HEADER HAS TO BE IN THIS FORMAT (Example from 1-3908):
 
-
 >mydef range=mygene:1-3908 5'pad=0 3'pad=0 strand=- repeatMasking=none
 ACGTCGT...
--o/--out        [string]   : output prefix name
+
 --outdir        [string]   : output directory
 --N             [int]      : specifies length of superhelical region in bp [1500]
 --a [int]                  : junction energy in kcal/mol, for B DNA it's 10-11 [10]

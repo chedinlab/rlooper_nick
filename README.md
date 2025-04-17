@@ -62,8 +62,12 @@ ACGTCGT...
 --help/--h                 : print this message
 --seed                     : Seed for RNG [42]
 
+
 ----------------
 ```
+
+Additional settings can be found in settings.ini file, but be careful as changing this could break the software
+
 
 ## Contributors
 

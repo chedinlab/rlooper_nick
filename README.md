@@ -12,8 +12,9 @@ rlooper_sim --i <fastaFile.fa> --outdir <outdir>
 
 Prerequisites:
 - Unix based system (Ubuntu, OSX, etc)
-- Install git if required: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git. Use git to pull the repository. 
+- Install git if required: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git. 
 - Git clone the repository and `make`:
+- To check if there's update do `git pull`
 
 ```
 git clone git@github.com:chedinlab/rlooper_sim.git

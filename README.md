@@ -1,16 +1,30 @@
 # R-looper sim
 
-Rlooper with feature including ssDNA nicking and simulate peaks
+Rlooper with additional feature: ssDNA nicking and simulate peaks from a given DNA
 
 ## Synopsis
 
 ```
+rlooper_sim --i <fastaFile.fa> --outdir <outdir>
+```
+
+## Installation
+
+Prerequisites:
+- Unix based system (Ubuntu, OSX, etc)
+- Install git if required: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git. Use git to pull the repository. 
+- Git clone the repository and `make`:
+
+```
 git clone git@github.com:chedinlab/rlooper_sim.git
 cd rlooper_sim
-make all
+make
+```
 
-# to run:
-bin/rlooper_sim --i <fastaFile.fa> --outdir <outdir>
+## Examples
+
+```
+cd rlooper_sim
 
 # Example, no nick
 bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir
@@ -19,20 +33,10 @@ bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir
 bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir_a20_sigmamin7_minlen50 --a 20 --sigma -0.070 --minlength 50
 
 # Example as above, but with nick at 300bp position and nicklen 1
-bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir_a20_sigmamin7_minlen50 --a 20 --sigma -0.070 --minlength 50 --nick 300 --nicklen 1
+bin/rlooper_sim --i example/pFC9_small.fa --outdir example/pFC9_small_outdir_a20_sigmamin7_minlen50_nick300_nicklen1 --a 20 --sigma -0.070 --minlength 50 --nick 300 --nicklen 1
 ```
- 
-## Installation
-Prerequisites:
-- Unix based system (Ubuntu, OSX, etc)
-- Install git if required: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git. Use git to pull the repository. 
-- OR download the repository as a .zip, then unzip the repository.
 
-To install follow these steps:
-1. Open a terminal, and use the `cd` command to navigate into the directory where the software has been downloaded and/or unzipped. 
-2. Build the software using `make all`
-4. If the build was successful (no error messages), a new directory should have been created within your rlooper directory called `bin`. The executable `rlooper` should be within that directory, and can now be moved anywhere on your computer and executed from the terminal with the arguments described below. 
-
+## Usage
 
 ```
 Usage: bin/rlooper_sim --i <fastaFile.fa> --outdir <outdir> --o <outprefix>
@@ -63,14 +67,14 @@ ACGTCGT...
 
 ## Contributors
 
-Developed and maintained by Stella R Hartono (srhartonoATucdavis.edu)
-The original version of this software is developed by Robert Stolz (rstolzATucdavis.edu) at https://github.com/chedinlab/rlooper/
+The original version of this software (rlooper) is developed by Robert Stolz (rstolzATucdavis.edu) at https://github.com/chedinlab/rlooper/
+rlooper_sim was developed and maintained by Stella R Hartono (srhartonoATucdavis.edu)
 
 Development of this software was funded in part by NIH grant GM120607 and NSF CAREER grant DMS1057284. 
 
 ## License
     rlooper_sim
-    Copyright (C) 2025 Stella R Hartono
+    Copyright (C) 2025 Stella R Hartono and Robert Stolz
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

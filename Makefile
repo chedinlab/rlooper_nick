@@ -14,16 +14,16 @@ CRFLAGS =
 OBJS = $(SRCDIR)gene.o $(SRCDIR)model.o $(SRCDIR)Rloop_model.o $(SRCDIR)simulation.o $(SRCDIR)structure.o $(SRCDIR)windower.o
 
 # Targets
-all: $(BINDIR)rlooper_nick
+all: $(BINDIR)rlooper_sim
 
 # Rule to create the bin directory if it doesn't exist
 $(BINDIR):
 	mkdir -p $(BINDIR)
 
-# Build the rlooper_nick executable
-$(BINDIR)rlooper_nick: $(BINDIR) $(OBJS) $(SRCDIR)rlooper_nick.o
-	@echo "Building rlooper_nick executable."
-	$(CC) -o $(BINDIR)rlooper_nick $(CFLAGS) $(OBJS) $(SRCDIR)rlooper_nick.o
+# Build the rlooper_sim executable
+$(BINDIR)rlooper_sim: $(BINDIR) $(OBJS) $(SRCDIR)rlooper_sim.o
+	@echo "Building rlooper_sim executable."
+	$(CC) -o $(BINDIR)rlooper_sim $(CFLAGS) $(OBJS) $(SRCDIR)rlooper_sim.o
 
 # General rule for C++ object files
 $(SRCDIR)%.o: $(SRCDIR)%.cpp
